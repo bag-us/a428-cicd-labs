@@ -8,9 +8,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // sh 'nmp config set legacy-peer-deps true'
-                sh 'set -e'
+                // sh 'npm install --force'
+                // sh 'npm install --legacy-peer-deps'
                 sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
             }
         }
     }
