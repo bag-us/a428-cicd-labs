@@ -1,10 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:gallium-bullseye-slim' 
-            args '-p 4040:4040' 
+    agent any
+        tools {
+            nodejs '18.12.1'  
         }
-    }
+    
     stages {
         stage('Build') {
             steps {
