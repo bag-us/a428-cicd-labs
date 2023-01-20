@@ -8,14 +8,19 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                // sh 'npm install --force'
-                // sh 'npm install --legacy-peer-deps'
                 sh 'npm install'
             }
         }
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)'
+                sh './jenkins/scripts/kill.sh'
             }
         }
     }
